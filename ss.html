@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Signal Strength Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #wifi-meter {
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        #wifi-signal {
+            width: 50px;
+            height: 50px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #signal-text {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #decibel-text {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WiFi Signal Strength Analyzer</h1>
+    <div id="wifi-meter">
+        <div id="wifi-signal"></div>
+    </div>
+    <p id="signal-text">Signal Strength: 0%</p>
+    <p id="decibel-text">Decibel Value: 0 dB</p>
+
+    <script>
+        // Simulated WiFi signal strength (between 0 and 100)
+        let signalStrength = 0;
+
+        // Function to update the WiFi signal meter and decibel value
+        function updateWiFiMeter() {
+            // Calculate the size of the WiFi signal based on the signal strength
+            const wifiSignal = document.getElementById("wifi-signal");
+            wifiSignal.style.width = `${signalStrength}%`;
+            wifiSignal.style.height = `${signalStrength}%`;
+
+            // Update the signal strength text
+            const signalText = document.getElementById("signal-text");
+            signalText.innerText = `Signal Strength: ${signalStrength} mbps`;
+
+            // Simulated decibel value (replace with real data if available)
+            const decibelValue = signalStrength * 2 - 100;
+            const decibelText = document.getElementById("decibel-text");
+            decibelText.innerText = `Decibel Value: ${decibelValue} dB`;
+        }
+
+        // Simulate changing WiFi signal strength over time (for demonstration)
+        setInterval(() => {
+            // Generate a random signal strength value between 0 and 100
+            signalStrength = Math.floor(Math.random() * 101);
+            updateWiFiMeter();
+        }, 2000); // Update every 2 seconds (you can adjust this interval)
+
+        // Initial update
+        updateWiFiMeter();
+    </script>
+</body>
+</html>
